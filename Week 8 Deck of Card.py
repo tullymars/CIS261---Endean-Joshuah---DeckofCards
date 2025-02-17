@@ -37,20 +37,20 @@ def main():
     deck = Deck()
     deck.shuffle()
     print(f"I have shuffled a deck of {deck.count()} cards.")
-    
+
     try:
         num_cards = int(input("How many cards would you like?: "))
     except ValueError:
         num_cards = 0
-    
+
     dealt_cards = deck.deal(num_cards)
     print("\nHere are your cards:")
+    print("Good luck!")
     for card in dealt_cards:
         print(card)
-    
+
     print(f"\nThere are {deck.count()} cards left in the deck.")
     input("Press any key to continue . . .")
 
 if __name__ == "__main__":
     main()
-
