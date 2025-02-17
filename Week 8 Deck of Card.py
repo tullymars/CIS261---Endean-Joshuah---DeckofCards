@@ -13,10 +13,7 @@ class Deck:
         self.ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10",
                       "Jack", "Queen", "King"]
         self.suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
-        self.deck = []
-        for suit in self.suits:
-            for rank in self.ranks:
-                self.deck.append(Card(rank, suit))
+        self.deck = [Card(rank, suit) for suit in self.suits for rank in self.ranks]
 
     def shuffle(self):
         random.shuffle(self.deck)
@@ -24,7 +21,7 @@ class Deck:
     def deal(self, number_of_cards):
         dealt_cards = []
         for _ in range(number_of_cards):
-            if len(self.deck) == 0:
+            if not self.deck:
                 break
             dealt_cards.append(self.deck.pop())
         return dealt_cards
@@ -44,10 +41,13 @@ def main():
         num_cards = 0
 
     dealt_cards = deck.deal(num_cards)
-    print("\nHere are your cards:")
-    print("Good luck!")
-    for card in dealt_cards:
-        print(card)
+    
+    if dealt_cards:
+        print("\nGood luck! Here are your cards:")
+        for card in dealt_cards:
+            print(card)
+    else:
+        print("No cards were dealt.")
 
     print(f"\nThere are {deck.count()} cards left in the deck.")
     input("Press any key to continue . . .")
